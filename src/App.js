@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import Header from './Components/Header'
 import Tasks from './Components/Tasks'
 import AddTask from './Components/AddTask'
+import Footer from './Components/Footer'
+import About from './Components/About'
 
 
 const App = () => { 
@@ -78,6 +81,7 @@ const toggleReminder = async (id) => {
 }
 
   return (
+    <Router>
     <div className='container'>
 
       <Header onAdd = {() => setShowAddTask (!showAddTask)}
@@ -86,7 +90,10 @@ const toggleReminder = async (id) => {
       {tasks.length > 0 ?
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : 'No Tasks Available' 
       }
+    <Route path='/about' component={About}/>
+    <Footer />
     </div>
+    </Router>
   );
 }
 
